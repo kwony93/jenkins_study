@@ -15,3 +15,20 @@ Docker in Docker (DooD) 권한 문제
 - Docker, Kubernetes, Jenkins, Shell Script (Bash)
 
 ##Docker socket permission denied 이슈를 chmod 666으로 임시 해결 / 해결방안 찾아보기
+
+---
+
+# Jenkins Study
+##2026-04-15 수정
+Kubernetes 환경에서 Jenkins를 배포하고 GitHub 연동 및 CI 작업을 수행하기 위한 커스텀 Jenkins 이미지입니다.
+
+## 포함 도구
+- Jenkins LTS
+- Git
+- Curl
+- kubectl v1.28.15
+
+## 목적
+- Kubernetes 클러스터 내 Jenkins 배포
+- GitHub 소스 연동
+- 추후 Kubernetes 배포 자동화 실습
