@@ -7,7 +7,8 @@ apt-get install -y --no-install-recommends \
     curl \
     ca-certificates \
     gnupg \
-    lsb-release
+    lsb-release \
+    docker.io
 
 KUBECTL_VERSION="v1.28.15"
 curl -LO "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl"
