@@ -1,21 +1,18 @@
 #!/bin/bash
-#docker group add
-DOCKER_GID=$1
+set -e
 
-if [ -n "$DOCKER_GID" ]; then
-    groupadd -g "$DOCKER_GID" docker_host 
-    usermod -aG docker_host jenkins 
-fi
+apt-get update
+apt-get install -y --no-install-recommends \
+    git \
+    curl \
+    ca-certificates \
+    gnupg \
+    lsb-release
 
-#1. package update & Install to need util
-apt-get update && apt-get install -y \
-	curl git ca-certificates gnupg lsb-release docker.io
+KUBECTL_VERSION="v1.28.15"
+curl -LO "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl"
+install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+rm -f kubectl
 
-#2. Kubernetes Binary install
-K8S_VERSION=$(curl -L -s https://dl.k8s.io/release/stable.txt)
-curl -LO "https://dl.k8s.io/release/${K8S_VERSION}/bin/linux/amd64/kubectl"
-chmod +x kubectl
-mv kubectl /usr/local/bin/
-
-#3. 정리작업
+apt-get clean
 rm -rf /var/lib/apt/lists/*
